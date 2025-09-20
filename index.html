@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz – Gérer le flux d’appels téléphoniques</title>
+  <style>
+    body{font-family:Arial, sans-serif; background:#f7fafc; margin:0; padding:20px; color:#0f172a;}
+    .container{max-width:900px; margin:auto;}
+    h1{color:#1f4e79; text-align:center;}
+    h2{color:#1f4e79; margin-top:30px;}
+    .part{display:none;}
+    .part.active{display:block;}
+    .question{background:#fff; border-radius:8px; padding:15px; margin:12px 0; box-shadow:0 4px 10px rgba(0,0,0,0.08);}
+    .question h3{margin-top:0; color:#0b2e4b; font-size:16px;}
+    .answers label{display:block; margin:6px 0; cursor:pointer;}
+    button{background:#1f4e79; color:#fff; border:none; padding:10px 16px; border-radius:6px; margin:8px 4px; cursor:pointer;}
+    button:hover{background:#163653;}
+    .result{margin-top:10px; font-weight:bold;}
+    .correct{color:green;}
+    .incorrect{color:red;}
+    .navigation{text-align:center; margin-top:20px;}
+    #final-score{font-size:18px; font-weight:bold; text-align:center; margin-top:20px;}
+
+    @media(max-width:600px){
+      body{padding:10px;}
+      .question{padding:12px;}
+      button{width:100%; margin:6px 0;}
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Quiz – Gérer le flux des appels téléphoniques</h1>
+
+  <!-- Partie 1 -->
+  <div class="part active" id="part1">
+    <h2>Partie 1 — Les bases</h2>
+    <div class="question" data-answer="B">
+      <h3>1. Au bout de combien de sonneries maximum dois-tu décrocher ?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q1"> A) 1 sonnerie</label>
+        <label><input type="radio" name="q1"> B) 2 sonneries</label>
+        <label><input type="radio" name="q1"> C) 4 sonneries</label>
+      </div>
+    </div>
+    <div class="question" data-answer="Vrai">
+      <h3>2. Vrai ou Faux : répondre trop vite (dès la première sonnerie) peut surprendre l’appelant.</h3>
+      <div class="answers">
+        <label><input type="radio" name="q2"> Vrai</label>
+        <label><input type="radio" name="q2"> Faux</label>
+      </div>
+    </div>
+    <div class="question" data-answer="B">
+      <h3>3. Quelle est la première impression que donne ta voix au téléphone ?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q3"> A) Ton humeur</label>
+        <label><input type="radio" name="q3"> B) L’image de l’entreprise</label>
+        <label><input type="radio" name="q3"> C) Rien de particulier</label>
+      </div>
+    </div>
+    <div class="question" data-answer="C">
+      <h3>4. Quelle formule est la plus adaptée pour accueillir un appel ?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q4"> A) « Allô ? »</label>
+        <label><input type="radio" name="q4"> B) « Oui, qu’est-ce que vous voulez ? »</label>
+        <label><input type="radio" name="q4"> C) « Entreprise Martin, bonjour, comment puis-je vous aider ? »</label>
+      </div>
+    </div>
+    <div class="question" data-answer="A">
+      <h3>5. Que signifie « flux d’appels » ?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q5"> A) Une série d’appels reçus dans un temps donné</label>
+        <label><input type="radio" name="q5"> B) Un seul appel à la fois</label>
+        <label><input type="radio" name="q5"> C) Un appel qui coupe</label>
+      </div>
+    </div>
+    <div class="question" data-answer="B">
+      <h3>6. Le téléphone qui sonne plusieurs fois en même temps représente :</h3>
+      <div class="answers">
+        <label><input type="radio" name="q6"> A) Du stress inutile</label>
+        <label><input type="radio" name="q6"> B) Un flux d’appels à gérer</label>
+        <label><input type="radio" name="q6"> C) Une erreur technique</label>
+      </div>
+    </div>
+    <div class="question" data-answer="Vrai">
+      <h3>7. Vrai ou Faux : le sourire s’entend au téléphone.</h3>
+      <div class="answers">
+        <label><input type="radio" name="q7"> Vrai</label>
+        <label><input type="radio" name="q7"> Faux</label>
+      </div>
+    </div>
+    <div class="question" data-answer="B">
+      <h3>8. Pourquoi faut-il garder une voix posée ?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q8"> A) Pour paraître endormi</label>
+        <label><input type="radio" name="q8"> B) Pour rassurer et donner confiance</label>
+        <label><input type="radio" name="q8"> C) Pour gagner du temps</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Partie 2 -->
+  <div class="part" id="part2">
+    <h2>Partie 2 — Priorisation</h2>
+    <div class="question" data-answer="B">
+      <h3>9. Quel type d’appel doit être traité en priorité ?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q9"> A) Un appel publicitaire</label>
+        <label><input type="radio" name="q9"> B) Un client mécontent au sujet d’une facture</label>
+        <label><input type="radio" name="q9"> C) Un prospect qui demande un devis</label>
+      </div>
+    </div>
+    <div class="question" data-answer="Faux">
+      <h3>10. Vrai ou Faux : tous les appels ont la même importance.</h3>
+      <div class="answers">
+        <label><input type="radio" name="q10"> Vrai</label>
+        <label><input type="radio" name="q10"> Faux</label>
+      </div>
+    </div>
+    <div class="question" data-answer="A">
+      <h3>11. Urgent & important → ?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q11"> A) À traiter immédiatement</label>
+        <label><input type="radio" name="q11"> B) À planifier</label>
+        <label><input type="radio" name="q11"> C) À éliminer</label>
+      </div>
+    </div>
+    <div class="question" data-answer="C">
+      <h3>12. Exemple d’appel secondaire :</h3>
+      <div class="answers">
+        <label><input type="radio" name="q12"> A) Une urgence médicale</label>
+        <label><input type="radio" name="q12"> B) Une réclamation client</label>
+        <label><input type="radio" name="q12"> C) Une publicité téléphonique</label>
+      </div>
+    </div>
+    <div class="question" data-answer="Faux">
+      <h3>13. Vrai ou Faux : filtrer les appels, c’est manquer de respect à l’appelant.</h3>
+      <div class="answers">
+        <label><input type="radio" name="q13"> Vrai</label>
+        <label><input type="radio" name="q13"> Faux</label>
+      </div>
+    </div>
+    <div class="question" data-answer="A">
+      <h3>14. Quel outil t’aide à prioriser tes appels ?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q14"> A) La matrice d’Eisenhower</label>
+        <label><input type="radio" name="q14"> B) La calculatrice</label>
+        <label><input type="radio" name="q14"> C) Le calendrier lunaire</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Partie 3 -->
+  <div class="part" id="part3">
+    <h2>Partie 3 — Outils du standard</h2>
+    <div class="question" data-answer="B">
+      <h3>15. Que dois-tu toujours dire avant de mettre en attente ?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q15"> A) Rien</label>
+        <label><input type="radio" name="q15"> B) « Je vous mets en attente quelques instants, merci de patienter. »</label>
+        <label><input type="radio" name="q15"> C) « Attendez. »</label>
+      </div>
+    </div>
+    <div class="question" data-answer="Faux">
+      <h3>16. Vrai ou Faux : tu peux mettre en attente sans prévenir l’appelant.</h3>
+      <div class="answers">
+        <label><input type="radio" name="q16"> Vrai</label>
+        <label><input type="radio" name="q16"> Faux</label>
+      </div>
+    </div>
+    <div class="question" data-answer="B">
+      <h3>17. Quand tu transfères un appel, que dois-tu faire en priorité ?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q17"> A) Couper la communication</label>
+        <label><input type="radio" name="q17"> B) Annoncer l’appelant à ton collègue</label>
+        <label><input type="radio" name="q17"> C) Noter l’heure</label>
+      </div>
+    </div>
+    <div class="question" data-answer="A">
+      <h3>18. Quelle info est indispensable quand tu prends un message ?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q18"> A) Le nom et le numéro</label>
+        <label><input type="radio" name="q18"> B) Le jour de la semaine</label>
+        <label><input type="radio" name="q18"> C) L’âge de l’appelant</label>
+      </div>
+    </div>
+    <div class="question" data-answer="Faux">
+      <h3>19. Vrai ou Faux : il est inutile de noter l’objet de l’appel, seul le numéro compte.</h3>
+      <div class="answers">
+        <label><input type="radio" name="q19"> Vrai</label>
+        <label><input type="radio" name="q19"> Faux</label>
+      </div>
+    </div>
+    <div class="question" data-answer="B">
+      <h3>20. Exemple de bonne pratique avec un transfert :</h3>
+      <div class="answers">
+        <label><input type="radio" name="q20"> A) « Je vous passe le service concerné, au revoir. »</label>
+        <label><input type="radio" name="q20"> B) « Je vous passe Mme Dupuis, elle appelle au sujet de sa facture. »</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Partie 4 -->
+  <div class="part" id="part4">
+    <h2>Partie 4 — Posture & organisation</h2>
+    <div class="question" data-answer="Vrai">
+      <h3>21. Vrai ou Faux : annoncer un délai à l’appelant est une preuve de professionnalisme.</h3>
+      <div class="answers">
+        <label><input type="radio" name="q21"> Vrai</label>
+        <label><input type="radio" name="q21"> Faux</label>
+      </div>
+    </div>
+    <div class="question" data-answer="B">
+      <h3>22. Quelle est la meilleure réaction en cas d’afflux d’appels ?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q22"> A) Répondre sèchement pour aller vite</label>
+        <label><input type="radio" name="q22"> B) Rester calme et annoncer les délais</label>
+        <label><input type="radio" name="q22"> C) Ne plus décrocher</label>
+      </div>
+    </div>
+    <div class="question" data-answer="B">
+      <h3>23. Qu’est-ce qu’un journal d’appels ?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q23"> A) Un agenda papier</label>
+        <label><input type="radio" name="q23"> B) Un registre qui note qui a appelé et pourquoi</label>
+        <label><input type="radio" name="q23"> C) Une revue d’actualité</label>
+      </div>
+    </div>
+    <div class="question" data-answer="B">
+      <h3>24. Quelle est la règle des 2 minutes ?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q24"> A) Répondre à un appel en moins de 2 min</label>
+        <label><input type="radio" name="q24"> B) Si une tâche prend moins de 2 min, la faire tout de suite</label>
+        <label><input type="radio" name="q24"> C) Attendre 2 min avant de répondre</label>
+      </div>
+    </div>
+    <div class="question" data-answer="Faux">
+      <h3>25. Vrai ou Faux : tu dois promettre à tous les appelants une réponse immédiate, même si tu ne peux pas.</h3>
+      <div class="answers">
+        <label><input type="radio" name="q25"> Vrai</label>
+        <label><input type="radio" name="q25"> Faux</label>
+      </div>
+    </div>
+    <div class="question" data-answer="B">
+      <h3>26. Quelle qualité doit toujours s’entendre dans ta voix ?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q26"> A) Le stress</label>
+        <label><input type="radio" name="q26"> B) Le sourire</label>
+        <label><input type="radio" name="q26"> C) L’indifférence</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="navigation">
+    <button onclick="prevPart()">← Précédent</button>
+    <button onclick="nextPart()">Suivant →</button>
+    <button onclick="checkAnswers()">Valider mes réponses</button>
+  </div>
+
+  <div id="final-score"></div>
+</div>
+
+<script>
+let currentPart=1;
+const totalParts=4;
+
+function showPart(n){
+  document.querySelectorAll('.part').forEach(p=>p.classList.remove('active'));
+  document.getElementById("part"+n).classList.add("active");
+}
+function nextPart(){if(currentPart<totalParts){currentPart++;showPart(currentPart);}}
+function prevPart(){if(currentPart>1){currentPart--;showPart(currentPart);}}
+
+function checkAnswers(){
+  let score=0, total=0;
+  document.querySelectorAll('.question').forEach(q=>{
+    total++;
+    const correct=q.dataset.answer;
+    const selected=q.querySelector("input:checked");
+    let result=q.querySelector(".result");
+    if(!result){
+      result=document.createElement("div");
+      result.classList.add("result");
+      q.appendChild(result);
+    }
+    if(selected && selected.parentNode.textContent.trim().startsWith(correct)){
+      result.textContent="Bonne réponse ✔";
+      result.className="result correct";
+      score++;
+    }else{
+      result.textContent="Mauvaise réponse ❌ (Réponse correcte : "+correct+")";
+      result.className="result incorrect";
+    }
+  });
+  document.getElementById("final-score").textContent="Ton score : "+score+"/"+total;
+}
+</script>
+</body>
+</html>
