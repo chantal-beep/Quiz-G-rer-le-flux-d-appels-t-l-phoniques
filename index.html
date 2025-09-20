@@ -42,6 +42,7 @@
     .incorrect { color: red; }
     .navigation { text-align: center; margin-top: 20px; }
     #final-score { font-size: 18px; font-weight: bold; text-align: center; margin-top: 20px; }
+    #retry { text-align: center; margin-top: 20px; }
     @media (max-width: 600px) {
       body { padding: 10px; }
       .container { padding: 10px; }
@@ -56,7 +57,7 @@
 <div class="container">
   <h1>Quiz – Gérer le flux des appels téléphoniques</h1>
 
-  <!-- Partie 1 (exemple avec 2 questions pour la démo) -->
+  <!-- Partie 1 -->
   <div class="part active" id="part1">
     <h2>Partie 1 — Les bases</h2>
     <div class="question" data-answer="B">
@@ -68,13 +69,77 @@
       </div>
     </div>
     <div class="question" data-answer="Vrai">
-      <h3>2. Vrai ou Faux : répondre trop vite peut surprendre l’appelant.</h3>
+      <h3>2. Vrai ou Faux : répondre trop vite (dès la 1ère sonnerie) peut surprendre l’appelant.</h3>
       <div class="answers">
         <label><input type="radio" name="q2"> Vrai</label>
         <label><input type="radio" name="q2"> Faux</label>
       </div>
     </div>
-    <!-- ⚠️ Ici, tu continues jusqu’à q26 -->
+    <div class="question" data-answer="B">
+      <h3>3. Quelle est la première impression que donne ta voix au téléphone ?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q3"> A) Ton humeur</label>
+        <label><input type="radio" name="q3"> B) L’image de l’entreprise</label>
+        <label><input type="radio" name="q3"> C) Rien de particulier</label>
+      </div>
+    </div>
+    <div class="question" data-answer="C">
+      <h3>4. Quelle formule est la plus adaptée pour accueillir un appel ?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q4"> A) « Allô ? »</label>
+        <label><input type="radio" name="q4"> B) « Oui, qu’est-ce que vous voulez ? »</label>
+        <label><input type="radio" name="q4"> C) « Entreprise Martin, bonjour, comment puis-je vous aider ? »</label>
+      </div>
+    </div>
+    <div class="question" data-answer="A">
+      <h3>5. Que signifie « flux d’appels » ?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q5"> A) Une série d’appels reçus dans un temps donné</label>
+        <label><input type="radio" name="q5"> B) Un seul appel à la fois</label>
+        <label><input type="radio" name="q5"> C) Un appel qui coupe</label>
+      </div>
+    </div>
+    <div class="question" data-answer="B">
+      <h3>6. Le téléphone qui sonne plusieurs fois en même temps représente :</h3>
+      <div class="answers">
+        <label><input type="radio" name="q6"> A) Du stress inutile</label>
+        <label><input type="radio" name="q6"> B) Un flux d’appels à gérer</label>
+        <label><input type="radio" name="q6"> C) Une erreur technique</label>
+      </div>
+    </div>
+    <div class="question" data-answer="Vrai">
+      <h3>7. Vrai ou Faux : le sourire s’entend au téléphone.</h3>
+      <div class="answers">
+        <label><input type="radio" name="q7"> Vrai</label>
+        <label><input type="radio" name="q7"> Faux</label>
+      </div>
+    </div>
+    <div class="question" data-answer="B">
+      <h3>8. Pourquoi faut-il garder une voix posée ?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q8"> A) Pour paraître endormi</label>
+        <label><input type="radio" name="q8"> B) Pour rassurer et donner confiance</label>
+        <label><input type="radio" name="q8"> C) Pour gagner du temps</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Partie 2 -->
+  <div class="part" id="part2">
+    <h2>Partie 2 — Priorisation</h2>
+    <!-- Questions 9 à 14 ici -->
+  </div>
+
+  <!-- Partie 3 -->
+  <div class="part" id="part3">
+    <h2>Partie 3 — Outils du standard</h2>
+    <!-- Questions 15 à 20 ici -->
+  </div>
+
+  <!-- Partie 4 -->
+  <div class="part" id="part4">
+    <h2>Partie 4 — Posture & organisation</h2>
+    <!-- Questions 21 à 26 ici -->
   </div>
 
   <!-- Navigation -->
@@ -82,10 +147,10 @@
     <button onclick="prevPart()">← Précédent</button>
     <button onclick="nextPart()">Suivant →</button>
     <button onclick="checkAnswers()">Valider mes réponses</button>
-    <button onclick="resetQuiz()">Recommencer 🔄</button>
   </div>
 
   <div id="final-score"></div>
+  <div id="retry"></div>
 </div>
 
 <script>
@@ -120,17 +185,18 @@ function checkAnswers() {
       result.className = "result incorrect";
     }
   });
+
   document.getElementById("final-score").textContent = "Ton score : " + score + "/" + total;
+
+  // Afficher bouton "Recommencer" uniquement après validation
+  document.getElementById("retry").innerHTML = `<button onclick="resetQuiz()">Recommencer 🔄</button>`;
 }
 
 function resetQuiz() {
-  // Décoche toutes les cases
   document.querySelectorAll("input[type=radio]").forEach(el => el.checked = false);
-  // Supprime les résultats affichés
   document.querySelectorAll(".result").forEach(r => r.remove());
-  // Réinitialise le score
   document.getElementById("final-score").textContent = "";
-  // Retour à la première partie
+  document.getElementById("retry").innerHTML = "";
   currentPart = 1;
   showPart(currentPart);
 }
